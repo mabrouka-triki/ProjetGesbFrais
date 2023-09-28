@@ -15,35 +15,36 @@
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" datatarget="#navbar-collapse-target">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-target">
                     <span class="sr-only">Toggle navigation</span> <span class="iconbar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar+ bvn"></span>
                 </button>
-                <a class="navbar-brand" href="{ { url('/') }}">GSB Frais </a>
+                <a class="navbar-brand" href="{{ url('/') }}">GSB Frais </a>
             </div>
-            @if (Session::get('id') ==0)
+            @if (Session::get('id') == 0)
                 <div class="collapse navbar-collapse" id="navbar-target">
                     <ul class="nav navbarbar-nav navbar-right">
-                        <li><a href="{ { url('/seConnecter') }}" data-toggle="collapse" data-target=".navbar-collapse.in"> Se connecter</a></li>
+                        <li><a href="{{ url('/seConnecter') }}" data-toggle="collapse" data-target=".navbar-collapse.in"> Se connecter</a></li>
                     </ul>
                 </div>
             @endif
-            @if (Session::get('id')> 0)
+            @if (Session::get('id') > 0)
                 <div class="collapse navbar-collapse" id="navbar-collapse-target">
                     <ul class="nav navbar-nav">
-                        <li><a href="{ { url('/') }}" data-toggle="collapse" datatarget=".navbar-collapse.in">Lister</a></li>
-                        <li><a href="{ { url('/') }}" data-toggle="collapse" datatarget=".navbar-collapse.in">Ajouter </a></li>
+                        <li><a href="{{ url('/') }}" data-toggle="collapse" data-target=".navbar-collapse.in">Lister</a></li>
+                        <li><a href="{{ url('/') }}" data-toggle="collapse" data-target=".navbar-collapse.in">Ajouter </a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{ { url('/seDeconnecter') }}" data-toggle="collapse" datatarget=".navbar-collapse.in">Se deconnecter </a></li>
+                        <li><a href="{{ url('/seDeconnecter') }}" data-toggle="collapse" data-target=".navbar-collapse.in">Se déconnecter </a></li>
                     </ul>
                 </div>
-                @if($erreur!="")
+                @if($erreur != "")
                     <div class="alert-danger" role="alert">
                         <span class="glyphicon-exclamation-sign" aria-hidden="true"></span>{{$erreur}}
                     </div>
-            @endif
+                @endif
+            @endif <!-- Ajout du bloc "endif" pour fermer la condition précédente -->
         </div><!--/.container-fluid -->
     </nav>
 </div>

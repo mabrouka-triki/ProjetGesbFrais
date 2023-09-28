@@ -17,3 +17,6 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/formLogin ',[VisiteurController::class,'getLogin']);
+Route::post('/Login ',[VisiteurController::class,'signIn']);
+Route::get('/getLogout ',[VisiteurController::class,'signOut']);
