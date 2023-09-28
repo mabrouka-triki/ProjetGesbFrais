@@ -5,34 +5,37 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 
-class Visiteur extends Model {
+class Visiteur extends Model
+{
 
 //On déclare la table visiteur
-protected Stable = 'visiteur';
-public $timestamps = false;
-protected $fillable = [
+    protected $table = 'visiteur';
+    public $timestamps = false;
+    protected $fillable = [
 
-'id visiteur',
+        'id_visiteur',
 
-'id laboratoire',
+        'id_laboratoire',
 
-tid secteur',
+        'id_secteur',
 
-‘nom visiteur',
+        'nom_visiteur',
 
-‘prenom visiteur',
+        'prenom_visiteur',
 
-‘adresse visiteur',
+        'adresse_visiteur',
 
-‘cp visiteur',
+        'cp_visiteur',
 
-‘ville visiteur',
+        'ville_visiteur',
 
-‘date_embauche',
+        'date_embauche',
 
-‘login visiteur",
+        'login_visiteur',
 
-‘pud visiteur",
+        'pwd_visiteur',
 
-‘type visiteur"
+        'type_visiteur'
+    ];
+}
 
