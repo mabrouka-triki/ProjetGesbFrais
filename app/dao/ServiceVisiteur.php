@@ -26,8 +26,9 @@ class ServiceVisiteur
                 ->select()
                 ->where('login_visiteur', '=', $login)
                 ->first();
-
+            echo "HELLO WORLD $login";
             if ($visiteur) {
+                echo $visiteur->pwd_visiteur." ".$pwd;
                 if ($visiteur->pwd_visiteur == $pwd) {
                     Session::put('id', $visiteur->id_visiteur);
                     Session::put('type', $visiteur->type_visiteur);
@@ -35,6 +36,7 @@ class ServiceVisiteur
                 }
             }
         } catch (QueryException $e) { // Correction : Utilisation de QueryException au lieu de BadQueryStringException
+            echo $e->getMessage();
             throw new MonException($e->getMessage(), 5);
         }
         return $connected;

@@ -25,7 +25,7 @@
             @if (Session::get('id') == 0)
                 <div class="collapse navbar-collapse" id="navbar-target">
                     <ul class="nav navbarbar-nav navbar-right">
-                        <li><a href="{{ url('/login') }}" data-toggle="collapse" data-target=".navbar-collapse.in"> Se connecter</a></li>
+                        <li><a href="{{ url('/formLogin') }}" data-toggle="collapse" data-target=".navbar-collapse.in"> Se connecter</a></li>
                     </ul>
                 </div>
             @endif
@@ -39,11 +39,12 @@
                         <li><a href="{{ url('/seDeconnecter') }}" data-toggle="collapse" data-target=".navbar-collapse.in">Se déconnecter </a></li>
                     </ul>
                 </div>
-                @if($erreur != "")
+                @isset($erreur)
+
                     <div class="alert-danger" role="alert">
                         <span class="glyphicon-exclamation-sign" aria-hidden="true"></span>{{$erreur}}
                     </div>
-                @endif
+                @endisset
             @endif <!-- Ajout du bloc "endif" pour fermer la condition précédente -->
         </div><!--/.container-fluid -->
     </nav>
