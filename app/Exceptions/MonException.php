@@ -9,7 +9,9 @@ class MonException extends Exception
     protected $message='Unknown exception';
     private $string;
     protected $code=0;
-    private $trade;
+    protected $file;
+    protected $line;
+    private $trace;
 
 
     public function __construct($message, $code = 0, Exception $previous = null)
