@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "837b47c2781ee8bb5f30c4a748efba5f",
+    "content-hash": "cae0c7d142d7c22b5c97b0dd66ee4283",
     "packages": [
         {
             "name": "brick/math",
@@ -1980,6 +1980,43 @@
                 }
             ],
             "time": "2023-06-21T08:46:11+00:00"
+        },
+        {
+            "name": "mtrik/test-montant_frais",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mabrouka-triki/test-montant_frais.git",
+                "reference": "0f983d8a3b67a31c41d906051757853bcad6736c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mabrouka-triki/test-montant_frais/zipball/0f983d8a3b67a31c41d906051757853bcad6736c",
+                "reference": "0f983d8a3b67a31c41d906051757853bcad6736c",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mtrik\\TestMontantFrais\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AFL-1.1"
+            ],
+            "authors": [
+                {
+                    "name": "mtrik",
+                    "email": "trikimabrouka09@gmail.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/mabrouka-triki/test-montant_frais/issues",
+                "source": "https://github.com/mabrouka-triki/test-montant_frais/tree/master"
+            },
+            "time": "2023-09-29T13:23:55+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -8129,7 +8166,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "mtrik/test-montant_frais": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
