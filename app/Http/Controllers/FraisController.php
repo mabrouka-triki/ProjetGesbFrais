@@ -31,35 +31,36 @@ class FraisController extends Controller
     }
 
 
-public function validateFrais(){
-        try{
-            $id_frais=Request::input('id_frais');
-            $anneemois=Request::input('anneemois');
-            $nbjustificatifs=Request::input('nbjustificatifs');
-            $unServicefrais=new ServiceFrais();
-            if($id_frais>0){
-                $unServicefrais=updateFrais($id_frais,$anneemois,$nbjustificatifs);
-            }else{
-                $montant=Request::input('montant');
-                $id_visiteur=session::get('id');
-                $unServicefrais->insertFrais($anneemois,$nbjustificatifs,$id_visiteur,$montant);
+
+    public function validateFrais(Request $request)
+    {
+        try {
+            $id_frais = $request->input('id_frais');
+            $anneemois = $request->input('anneemois');
+            $nbjustificatifs = $request->input('nbjustificatifs');
+            $unServiceFrais = new ServiceFrais();
+
+            if ($id_frais > 0) {
+                $this->updateFrais($id_frais, $anneemois, $nbjustificatifs);
+            } else {
+                $montant = $request->input('montant');
+                $id_visiteur = session::get('id');
+                $unServiceFrais->insertFrais($anneemois, $nbjustificatifs, $id_visiteur, $montant);
             }
             return redirect('/getListeFrais');
-        }catch(MonException $e){
-            $monErreur=$e->getMessage();
+        } catch (MonException $e) {
             $monErreur = $e->getMessage();
             return view('Vues/error', compact('monErreur'));
         } catch (Exception $e) {
             $monErreur = $e->getMessage();
             return view('Vues/error', compact('monErreur'));
         }
-}
+    }
 
 
 
 
-
-    public function updateFrais($id_frais)
+    public function updateFrais($id_frais, $anneemois, $nbjustificatifs)
     {
         try {
             $unServiceFrais = new ServiceFrais();
@@ -76,5 +77,6 @@ public function validateFrais(){
             return view('Vues/error', compact('monErreur'));
         }
     }
+
 
 }

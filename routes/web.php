@@ -28,3 +28,11 @@ Route::get('/formLogin ',[\App\Http\Controllers\VisiteurController::class,'getLo
 Route::post('/login ',[\App\Http\Controllers\VisiteurController::class,'signIn']);
 
 Route::get('/getLogout ',[\App\Http\Controllers\VisiteurController::class,'singOut']);
+
+// Route pour afficher le formulaire de modification/ajout de frais
+Route::get('/modifierFrais/{id}', [FraisController::class, 'updateFrais']);
+
+// Route pour traiter la soumission du formulaire de modification/ajout de frais
+Route::post('/updateFrais/{id}', [FraisController::class, 'updateFrais'])
+    ->name('updateFrais');
+

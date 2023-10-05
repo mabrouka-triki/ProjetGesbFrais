@@ -1,14 +1,10 @@
 <?php
 
 namespace App\dao;
+
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\MonException;
-/*
- * @param  type $id_Visiteur: Login du visiteur
-
- * @return  type collection frais
- */
 
 class ServiceFrais
 {
@@ -26,22 +22,20 @@ class ServiceFrais
         }
     }
 
-
-
-    public function updateFrais($id_frais,$anneemois,$nbjustificatifs)
+    public function updateFrais($id_frais, $anneemois, $nbjustificatifs)
     {
         try {
             $dateJour = date("Y-m-d");
-            DB::table(frais);
-                ->where('id_frais', '=', $id_frais)
-                ->update(['anneemois'=>$anneemois,'nbjustifi'])
-                ->get();
 
-            return $lesFrais;
+            DB::table('frais')
+                ->where('id_frais', '=', $id_frais)
+                // Correction 2 : Passage des valeurs à update
+                ->update(['anneemois' => $anneemois, 'nbjustificatifs' => $nbjustificatifs]);
+
+
+            return "Mise à jour des frais réussie.";
         } catch (QueryException $e) {
             throw new MonException($e->getMessage(), 5);
         }
     }
-
 }
-
