@@ -1,7 +1,8 @@
 
 @section("content")
-<br>
-<br>
+    <br>
+    <br>
+    <br>
 <table class= "table-bordered table-striped table-responsive">
     <thead>
     <tr>
@@ -10,6 +11,7 @@
         <th style="width:20%">Supprimer</th>
     </tr>
     </thead>
+
     @foreach($mesFrais as $unFrais)
         <tr>
             <td>{{ $unFrais->anneemois }}</td>
@@ -29,4 +31,5 @@
 
 
 @include('Vues/error')
+
 

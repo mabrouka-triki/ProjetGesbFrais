@@ -25,5 +25,23 @@ class ServiceFrais
             throw new MonException($e->getMessage(), 5);
         }
     }
+
+
+
+    public function updateFrais($id_frais,$anneemois,$nbjustificatifs)
+    {
+        try {
+            $dateJour = date("Y-m-d");
+            DB::table(frais);
+                ->where('id_frais', '=', $id_frais)
+                ->update(['anneemois'=>$anneemois,'nbjustifi'])
+                ->get();
+
+            return $lesFrais;
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
 }
 

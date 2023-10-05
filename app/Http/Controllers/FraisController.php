@@ -47,7 +47,11 @@ public function validateFrais(){
             return redirect('/getListeFrais');
         }catch(MonException $e){
             $monErreur=$e->getMessage();
-
+            $monErreur = $e->getMessage();
+            return view('Vues/error', compact('monErreur'));
+        } catch (Exception $e) {
+            $monErreur = $e->getMessage();
+            return view('Vues/error', compact('monErreur'));
         }
 }
 

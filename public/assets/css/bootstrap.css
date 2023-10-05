@@ -45,6 +45,15 @@ template {
 a {
   background: transparent;
 }
+
+
+.navbar {
+    z-index: 1000; /* Une valeur supérieure à celle de la table */
+}
+table {
+    z-index: 999; /* Une valeur inférieure à celle de la barre de navigation */
+}
+
 a:active,
 a:hover {
   outline: 0;
