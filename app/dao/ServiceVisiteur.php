@@ -46,4 +46,6 @@ class ServiceVisiteur
     {
         Session::put('id', 0);
     }
+
+
 }

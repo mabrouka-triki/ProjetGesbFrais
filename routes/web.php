@@ -1,5 +1,6 @@
 <?php
-
+use App\Http\Controllers\VisiteurController;
+use App\Http\Controllers\FraisController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,13 @@ Route::get('/', function () {
     return view('home');
 });
 
+
+
+Route::get('/listeFrais', [App\Http\Controllers\FraisController::class, 'getFraisVisiteur']);
+
 Route::get('/formLogin ',[\App\Http\Controllers\VisiteurController::class,'getLogin']);
+
+
 Route::post('/login ',[\App\Http\Controllers\VisiteurController::class,'signIn']);
-Route::get('/getLogout ',[\App\Http\Controllers\VisiteurController::class,'signOut']);
+
+Route::get('/getLogout ',[\App\Http\Controllers\VisiteurController::class,'singOut']);

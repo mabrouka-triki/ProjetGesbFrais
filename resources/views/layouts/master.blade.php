@@ -32,11 +32,11 @@
             @if (Session::get('id') > 0)
                 <div class="collapse navbar-collapse" id="navbar-collapse-target">
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ url('/') }}" data-toggle="collapse" data-target=".navbar-collapse.in">Lister</a></li>
+                        <li><a href="{{ url('/listeFrais') }}" data-toggle="collapse" data-target=".navbar-collapse.in">Lister</a></li>
                         <li><a href="{{ url('/') }}" data-toggle="collapse" data-target=".navbar-collapse.in">Ajouter </a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{{ url('/seDeconnecter') }}" data-toggle="collapse" data-target=".navbar-collapse.in">Se déconnecter </a></li>
+                        <li><a href="{{ url('/getLogout') }}" data-toggle="collapse" data-target=".navbar-collapse.in">Se déconnecter </a></li>
                     </ul>
                 </div>
                 @isset($erreur)
@@ -49,10 +49,11 @@
         </div><!--/.container-fluid -->
     </nav>
 </div>
-</div>
-<div class="container">
+
     @yield('content')
-</div>
+
+
+
 {!! Html::script('assets/js/bootstrap.min.js') !!}
 {!! Html::script('assets/js/bootstrap.js') !!}
 </body>
