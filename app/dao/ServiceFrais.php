@@ -38,4 +38,31 @@ class ServiceFrais
             throw new MonException($e->getMessage(), 5);
         }
     }
+
+    public function insertFrais($anneemois, $nbjustificatifs, $id_visiteur)
+    {
+        try {
+
+
+            DB::table('frais')->insert(
+                ['anneemois' => $anneemois,
+                    'nbjustificatifs' => $nbjustificatifs,
+                    'id_eta' => 2,
+                    'id_visiteur' => $id_visiteur,
+                    'montantvalide' => 0]
+            );
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
+    public function deleteFrais($id_frais)
+    {
+        try {
+            DB::table('fraishorsforfait')->where('id_frais', '=', $id_frais)->delete();
+            DB::table('frais')->where('id_frais', '=', $id_frais)->delete();
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+    }
+    }
 }

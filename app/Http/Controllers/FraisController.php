@@ -31,19 +31,18 @@ class FraisController extends Controller
     }
 
 
-
     public function validateFrais(Request $request)
     {
         try {
-            $id_frais = $request->input('id_frais');
-            $anneemois = $request->input('anneemois');
-            $nbjustificatifs = $request->input('nbjustificatifs');
+            $id_frais = request:: input('id_frais');
+            $anneemois = request:: input('anneemois');
+            $nbjustificatifs = request:: input('nbjustificatifs');
             $unServiceFrais = new ServiceFrais();
 
             if ($id_frais > 0) {
                 $this->updateFrais($id_frais, $anneemois, $nbjustificatifs);
             } else {
-                $montant = $request->input('montant');
+                $montant = request:: input('montant');
                 $id_visiteur = session::get('id');
                 $unServiceFrais->insertFrais($anneemois, $nbjustificatifs, $id_visiteur, $montant);
             }
@@ -56,8 +55,6 @@ class FraisController extends Controller
             return view('Vues/error', compact('monErreur'));
         }
     }
-
-
 
 
     public function updateFrais($id_frais, $anneemois, $nbjustificatifs)
@@ -77,6 +74,67 @@ class FraisController extends Controller
             return view('Vues/error', compact('monErreur'));
         }
     }
+
+    public function addFrais()
+    {
+        try {
+
+            $monErreur = "";
+            $titreVue = "Ajout d'une fiche de frais";
+            $unFrais="";
+
+            return view('Vues/formFrais', compact('unFrais', 'titreVue', 'monErreur'));
+        } catch (MonException $e) {
+            $monErreur = $e->getMessage();
+            return view('Vues/error', compact('monErreur'));
+        } catch (Exception $e) {
+            $monErreur = $e->getMessage();
+            return view('Vues/error', compact('monErreur'));
+        }
+    }
+
+    public function ValideFraisHorsForfait()
+    {
+        try {
+            $id_frais = request:: input('id_frais');
+            $anneemois = request:: input('anneemois');
+            $nbjustificatifs = request::input('nbjustificatifs');
+            $unServiceFrais = new ServiceFrais();
+
+            if ($id_frais > 0) {
+                $this->updateFrais($id_frais, $anneemois, $nbjustificatifs);
+            } else {
+                $montant = request::input('montant');
+                $id_visiteur = session::get('id');
+                $unServiceFrais->insertFrais($anneemois, $nbjustificatifs, $id_visiteur, $montant);
+            }
+            return redirect('/getListeFrais');
+        } catch (MonException $e) {
+            $monErreur = $e->getMessage();
+            return view('Vues/error', compact('monErreur'));
+        } catch (Exception $e) {
+            $monErreur = $e->getMessage();
+            return view('Vues/error', compact('monErreur'));
+
+        }
+    }
+
+    public function supprimerFrais($id_frais)
+    {
+        try {
+            $unServiceFrais = new ServiceFrais();
+            $unServiceFrais->deleteFrais($id_frais);
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            Session::put('erreur', 'Impossible de supprimer une fiche ayant des Frais Hors Forfait');
+        } catch (Exception $e) {
+            $erreur = $e->getMessage();
+            Session::put('erreur', 'Impossible de supprimer une fiche');
+        } finally {
+            return redirect('/getlisteFrais');
+        }
+    }
+
 
 
 }

@@ -45,8 +45,8 @@
                         <span class="glyphicon-exclamation-sign" aria-hidden="true"></span>{{$erreur}}
                     </div>
                 @endisset
-            @endif <!-- Ajout du bloc "endif" pour fermer la condition précédente -->
-        </div><!--/.container-fluid -->
+            @endif
+        </div>
     </nav>
 </div>
 
