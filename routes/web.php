@@ -36,3 +36,12 @@ Route::get('/modifierFrais/{id}', [FraisController::class, 'updateFrais']);
 Route::post('/updateFrais/{id}', [FraisController::class, 'updateFrais'])
     ->name('updateFrais');
 
+
+
+Route::get('/ajoutFrais',function(){
+    return view("vues/ajoutFrais");
+});
+
+
+
+Route::post('/postFrais',[FraisController::class,'addFrais']);

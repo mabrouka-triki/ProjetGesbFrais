@@ -22,6 +22,8 @@ class ServiceFrais
         }
     }
 
+
+
     public function updateFrais($id_frais, $anneemois, $nbjustificatifs)
     {
         try {
@@ -29,7 +31,7 @@ class ServiceFrais
 
             DB::table('frais')
                 ->where('id_frais', '=', $id_frais)
-                // Correction 2 : Passage des valeurs à update
+
                 ->update(['anneemois' => $anneemois, 'nbjustificatifs' => $nbjustificatifs]);
 
 
@@ -39,6 +41,8 @@ class ServiceFrais
         }
     }
 
+
+
     public function insertFrais($anneemois, $nbjustificatifs, $id_visiteur)
     {
         try {
@@ -47,7 +51,7 @@ class ServiceFrais
             DB::table('frais')->insert(
                 ['anneemois' => $anneemois,
                     'nbjustificatifs' => $nbjustificatifs,
-                    'id_eta' => 2,
+                    'id_etat' => 2,
                     'id_visiteur' => $id_visiteur,
                     'montantvalide' => 0]
             );

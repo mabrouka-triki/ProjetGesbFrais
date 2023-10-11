@@ -56,6 +56,26 @@ class FraisController extends Controller
         }
     }
 
+    
+    public function addFrais()
+    {
+        try {
+
+            $monErreur = "";
+            $titreVue = "Ajout d'une fiche de frais";
+            $unFrais="";
+
+            return view('Vues/formFrais', compact('unFrais', 'titreVue', 'monErreur'));
+        } catch (MonException $e) {
+            $monErreur = $e->getMessage();
+            return view('Vues/error', compact('monErreur'));
+        } catch (Exception $e) {
+
+            $monErreur = $e->getMessage();
+            return view('Vues/error', compact('monErreur'));
+        }
+    }
+
 
     public function updateFrais($id_frais, $anneemois, $nbjustificatifs)
     {
@@ -75,23 +95,6 @@ class FraisController extends Controller
         }
     }
 
-    public function addFrais()
-    {
-        try {
-
-            $monErreur = "";
-            $titreVue = "Ajout d'une fiche de frais";
-            $unFrais="";
-
-            return view('Vues/formFrais', compact('unFrais', 'titreVue', 'monErreur'));
-        } catch (MonException $e) {
-            $monErreur = $e->getMessage();
-            return view('Vues/error', compact('monErreur'));
-        } catch (Exception $e) {
-            $monErreur = $e->getMessage();
-            return view('Vues/error', compact('monErreur'));
-        }
-    }
 
     public function ValideFraisHorsForfait()
     {
@@ -118,6 +121,8 @@ class FraisController extends Controller
 
         }
     }
+
+
 
     public function supprimerFrais($id_frais)
     {
