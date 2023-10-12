@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use App\dao\ServiceFrais;
 use Illuminate\Support\Facades\Session;
@@ -56,7 +57,8 @@ class FraisController extends Controller
         }
     }
 
-    
+
+
     public function addFrais()
     {
         try {
