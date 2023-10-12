@@ -79,26 +79,26 @@ class FraisController extends Controller
     }
 
 
-    public function updateFrais($id_frais, $anneemois, $nbjustificatifs)
+
+    public function updateFrais($id_frais)
     {
         try {
+            $monErreur = "";
             $unServiceFrais = new ServiceFrais();
-            $unFrais = $unServiceFrais->getById($id_frais);
+            $unFrais = $unServiceFrais->getFrais($id_frais);
             $titreVue = "Modification d'une fiche de frais";
-            $erreur = null;
-
-            return view('Vues/modifFrais', compact('unFrais', 'erreur'));
+            return view('Vues/fromFrais', compact('unFrais', 'titreVue', 'monErreur'));
         } catch (MonException $e) {
             $monErreur = $e->getMessage();
-            return view('Vues/error', compact('monErreur'));
+            return view('vues/error', compact('monErreur'));
         } catch (Exception $e) {
             $monErreur = $e->getMessage();
-            return view('Vues/error', compact('monErreur'));
+            return view('vues/error', compact('monErreur'));
         }
     }
 
 
-    public function ValideFraisHorsForfait()
+        public function ValideFraisHorsForfait()
     {
         try {
             $id_frais = request:: input('id_frais');

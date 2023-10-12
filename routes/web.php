@@ -33,8 +33,16 @@ Route::get('/getLogout ',[\App\Http\Controllers\VisiteurController::class,'singO
 Route::get('/modifierFrais/{id}', [FraisController::class, 'updateFrais']);
 
 // Route pour traiter la soumission du formulaire de modification/ajout de frais
-Route::post('/updateFrais/{id}', [FraisController::class, 'updateFrais'])
-    ->name('updateFrais');
+
+
+
+Route::post('/postmodifierFrais',
+
+    array(
+        'uses' => 'App\Http\Controllers\FraisController@validateFrais',
+        'as' => 'postmodifierFrais'
+    )
+);
 
 
 
