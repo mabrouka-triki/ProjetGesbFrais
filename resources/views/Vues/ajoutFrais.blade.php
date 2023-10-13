@@ -1,10 +1,9 @@
-@extends('layouts/master')
+@extends('layouts.app')
 @section('content')
-
-
     <div class="container">
-        <h2>Ajout d'une fiche de frais</h2>
 
+        <h2>Ajout d'une fiche de frais</h2>
+        <form method="POST" action="{{ route('postFrais') }}">
             @csrf
 
             <div class="form-group">
@@ -21,9 +20,10 @@
                 <label for="montant">Montant</label>
                 <input type="text" name="montant" class="form-control">
             </div>
+
             <button type="submit" class="btn btn-primary">Ajouter</button>
         </form>
     </div>
-    @include('Vues/error')
-@endsection
 
+@endsection
+@include('Vues/error')
