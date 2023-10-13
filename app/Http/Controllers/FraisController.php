@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 
 use App\dao\ServiceFrais;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 use App\Exceptions\MonException;
-use Illuminate\Http\Request;
+
 
 class FraisController extends Controller
 {
