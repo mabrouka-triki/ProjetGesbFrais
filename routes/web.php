@@ -38,13 +38,10 @@ Route::get('/ajoutFrais',function(){
 Route::post('/getFrais',[FraisController::class,'addFrais']);
 
 
-
-
-
-
-
 // Route pour afficher le formulaire de modification/ajout de frais
 Route::get('/modifierFrais/{id}', [FraisController::class, 'updateFrais']);
+
+
 
 // Route pour traiter la soumission du formulaire de modification/ajout de frais
 
