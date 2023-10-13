@@ -1,3 +1,5 @@
+@extends('layouts/master')
+@section('content')
 
            @if($erreur!="")
             <div class="alert-danger" role="alert">

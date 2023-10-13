@@ -19,7 +19,6 @@ Route::get('/', function () {
 });
 
 
-
 Route::get('/listeFrais', [App\Http\Controllers\FraisController::class, 'getFraisVisiteur']);
 
 Route::get('/formLogin ',[\App\Http\Controllers\VisiteurController::class,'getLogin']);
@@ -28,3 +27,34 @@ Route::get('/formLogin ',[\App\Http\Controllers\VisiteurController::class,'getLo
 Route::post('/login ',[\App\Http\Controllers\VisiteurController::class,'signIn']);
 
 Route::get('/getLogout ',[\App\Http\Controllers\VisiteurController::class,'singOut']);
+
+
+Route::get('/ajoutFrais',function(){
+    $erreur = "";
+    return view('Vues/ajoutFrais', compact('erreur'));
+});
+
+
+Route::post('/getFrais',[FraisController::class,'addFrais']);
+
+
+
+
+
+
+
+// Route pour afficher le formulaire de modification/ajout de frais
+Route::get('/modifierFrais/{id}', [FraisController::class, 'updateFrais']);
+
+// Route pour traiter la soumission du formulaire de modification/ajout de frais
+
+Route::post('/postmodifierFrais',
+
+    array(
+        'uses' => 'App\Http\Controllers\FraisController@validateFrais',
+        'as' => 'postmodifierFrais'
+    )
+);
+
+
+

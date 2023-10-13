@@ -1,5 +1,5 @@
-
-@section("content")
+@extends('layouts/master')
+@section('content')
     <br>
     <br>
     <br>
@@ -27,9 +27,6 @@
         </tr>
     @endforeach
 </table>
-@endsection
-
-
 @include('Vues/error')
-
+@endsection
 

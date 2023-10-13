@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use App\dao\ServiceFrais;
 use Illuminate\Support\Facades\Session;
@@ -12,69 +13,136 @@ class FraisController extends Controller
     public function getFraisVisiteur()
     {
         try {
-            $monErreur = Session::get('monErreur');
+            $erreur = Session::get('monErreur');
             Session::forget('monErreur');
             $unServiceFrais = new ServiceFrais();
             $id_visiteur = Session::get('id');
-            echo $id_visiteur;
             $mesFrais = $unServiceFrais->getFrais($id_visiteur);
-            echo $mesFrais;
-            $erreur = $monErreur;
+            $erreur = '';
             return view('Vues/listeFrais', compact('mesFrais', 'erreur'));
         } catch (MonException $e) {
-            $monErreur = $e->getMessage();
-            return view('Vues/formLogin', compact('erreur'));
+            $erreur = $e->getMessage();
+            return view('Vues/monerror', compact('erreur'));
         } catch (Exception $e) {
-            $monErreur = $e->getMessage();
-            return view('Vues/error', compact('erreur'));
+            $erreur = $e->getMessage();
+            return view('Vues/monerror', compact('erreur'));
         }
     }
 
 
-public function validateFrais(){
-        try{
-            $id_frais=Request::input('id_frais');
-            $anneemois=Request::input('anneemois');
-            $nbjustificatifs=Request::input('nbjustificatifs');
-            $unServicefrais=new ServiceFrais();
-            if($id_frais>0){
-                $unServicefrais=updateFrais($id_frais,$anneemois,$nbjustificatifs);
-            }else{
-                $montant=Request::input('montant');
-                $id_visiteur=session::get('id');
-                $unServicefrais->insertFrais($anneemois,$nbjustificatifs,$id_visiteur,$montant);
+    public function validateFrais(Request $request)
+    {
+        try {
+            $id_frais = request:: input('id_frais');
+            $anneemois = request:: input('anneemois');
+            $nbjustificatifs = request:: input('nbjustificatifs');
+            $unServiceFrais = new ServiceFrais();
+
+            if ($id_frais > 0) {
+                $this->updateFrais($id_frais, $anneemois, $nbjustificatifs);
+            } else {
+                $montant = request:: input('montant');
+                $id_visiteur = session::get('id');
+                $unServiceFrais->insertFrais($anneemois, $nbjustificatifs, $id_visiteur, $montant);
             }
+
             return redirect('/getListeFrais');
-        }catch(MonException $e){
-            $monErreur=$e->getMessage();
-            $monErreur = $e->getMessage();
-            return view('Vues/error', compact('monErreur'));
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('Vues/monerror', compact('erreur'));
         } catch (Exception $e) {
-            $monErreur = $e->getMessage();
-            return view('Vues/error', compact('monErreur'));
+            $erreur = $e->getMessage();
+            return view('Vues/monerror', compact('erreur'));
         }
-}
+    }
 
 
+
+    public function addFrais()
+    {
+        try {
+
+            $erreur = "";
+            $titreVue = "Ajout d'une fiche de frais";
+            $unFrais="";
+
+            return view('Vues/', compact('unFrais', 'titreVue', 'erreur'));
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('Vues/monerror', compact('erreur'));
+        } catch (Exception $e) {
+
+            $erreur = $e->getMessage();
+            return view('Vues/monerror', compact('erreur'));
+        }
+    }
 
 
 
     public function updateFrais($id_frais)
     {
         try {
+            $erreur="";
             $unServiceFrais = new ServiceFrais();
-            $unFrais = $unServiceFrais->getById($id_frais);
+            $unFrais = $unServiceFrais->getFrais($id_frais);
             $titreVue = "Modification d'une fiche de frais";
-            $erreur = null;
-
-            return view('Vues/modifFrais', compact('unFrais', 'erreur'));
+            return view('Vues/fromFrais', compact('unFrais', 'titreVue', 'erreur'));
         } catch (MonException $e) {
-            $monErreur = $e->getMessage();
-            return view('Vues/error', compact('monErreur'));
+            $erreur  = $e->getMessage();
+            return view('vues/monerror', compact('erreur'));
         } catch (Exception $e) {
-            $monErreur = $e->getMessage();
-            return view('Vues/error', compact('monErreur'));
+            $erreur = $e->getMessage();
+            return view('vues/monerror', compact('erreur'));
         }
     }
+
+
+    public function ValideFraisHorsForfait()
+    {
+        try {
+            $id_frais = request:: input('id_frais');
+            $anneemois = request:: input('anneemois');
+            $nbjustificatifs = request::input('nbjustificatifs');
+            $unServiceFrais = new ServiceFrais();
+
+            if ($id_frais > 0) {
+                $this->updateFrais($id_frais, $anneemois, $nbjustificatifs);
+            } else {
+                $montant = request::input('montant');
+                $id_visiteur = session::get('id');
+                $unServiceFrais->insertFrais($anneemois, $nbjustificatifs, $id_visiteur, $montant);
+            }
+            return redirect('/getListeFrais');
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('Vues/monerror', compact('erreur'));
+        } catch (Exception $e) {
+            $erreur = $e->getMessage();
+            return view('Vues/monerror', compact('erreur'));
+
+        }
+    }
+
+
+
+    public function supprimerFrais($id_frais)
+    {
+        try {
+
+            $unServiceFrais = new ServiceFrais();
+            $unServiceFrais->deleteFrais($id_frais);
+
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            Session::put('erreur', 'Impossible de supprimer une fiche ayant des Frais Hors Forfait');
+        } catch (Exception $e) {
+            $erreur = $e->getMessage();
+            Session::put('erreur', 'Impossible de supprimer une fiche');
+        } finally {
+            return redirect('/getlisteFrais');
+        }
+    }
+
+
 
 }

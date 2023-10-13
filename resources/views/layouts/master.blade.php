@@ -33,18 +33,17 @@
                 <div class="collapse navbar-collapse" id="navbar-collapse-target">
                     <ul class="nav navbar-nav">
                         <li><a href="{{ url('/listeFrais') }}" data-toggle="collapse" data-target=".navbar-collapse.in">Lister</a></li>
-                        <li><a href="{{ url('/') }}" data-toggle="collapse" data-target=".navbar-collapse.in">Ajouter </a></li>
+                        <li><a href="{{ url('/ajoutFrais') }}" data-toggle="collapse" data-target=".navbar-collapse.in">Ajouter </a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="{{ url('/getLogout') }}" data-toggle="collapse" data-target=".navbar-collapse.in">Se déconnecter </a></li>
                     </ul>
                 </div>
-                @isset($erreur)
-
-                    <div class="alert-danger" role="alert">
-                        <span class="glyphicon-exclamation-sign" aria-hidden="true"></span>{{$erreur}}
-                    </div>
-                @endisset
+{{--                @isset($erreur)--}}
+{{--                    <div class="alert-danger" role="alert">--}}
+{{--                        <span class="glyphicon-exclamation-sign" aria-hidden="true"></span>{{$erreur}}--}}
+{{--                    </div>--}}
+{{--                @endisset--}}
             @endif <!-- Ajout du bloc "endif" pour fermer la condition précédente -->
         </div><!--/.container-fluid -->
     </nav>
