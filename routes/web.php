@@ -37,15 +37,9 @@ Route::get('/ajoutFrais',function(){
 
 
 
+
 Route::get('/ajoutFrais', [\App\Http\Controllers\FraisController::class, 'addFrais']);
-
 Route::post('/postajoutFrais', [\App\Http\Controllers\FraisController::class, 'validateFrais']);
-
-
-
-
-
-
 Route::get('/modifierFrais/{id}', [FraisController::class, 'updateFrais']);
 Route::post('/postmodifierFrais',
 
