@@ -84,9 +84,10 @@ class FraisController extends Controller
         try {
             $erreur="";
             $unServiceFrais = new ServiceFrais();
-            $unFrais = $unServiceFrais->getFrais($id_frais);
+            //$unFrais = $unServiceFrais->getFrais($id_frais);
+            $unFrais =  $unServiceFrais -> getById($id_frais);
             $titreVue = "Modification d'une fiche de frais";
-            return view('Vues/fromFrais', compact('unFrais', 'titreVue', 'erreur'));
+            return view('Vues/formFrais', compact('unFrais', 'titreVue', 'erreur'));
         } catch (MonException $e) {
             $erreur  = $e->getMessage();
             return view('vues/monerror', compact('erreur'));

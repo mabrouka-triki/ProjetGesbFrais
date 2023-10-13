@@ -20,6 +20,18 @@ class ServiceFrais
             throw new MonException($e->getMessage(), 5);
         }
     }
+    public function getById($id_frais)
+    {
+        try {
+            $frais = DB::table('frais')
+                ->select()
+                ->where('id_frais', '=', $id_frais)
+                ->first();
+            return $frais;
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
 
     public function getUnfrais($id)
     {

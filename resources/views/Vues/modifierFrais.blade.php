@@ -1,5 +1,9 @@
 @extends('layouts/master')
 @section('content')
+
+
+
+
     {!! Form::open(['url' => 'postmodifierFrais']) !!}
     <div class="col-md-12  col-sm-12 well well-md">
         <center><h1>Modification d'une fiche de Frais </h1></center>

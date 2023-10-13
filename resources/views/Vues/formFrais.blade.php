@@ -1,24 +1,30 @@
-@extends('layouts.app')
 
+
+<br>
+<br>
+<br>
+@extends('layouts/master')
 @section('content')
-
 
 {!! Form::open(['url' => 'validateFrais']) !!}
 <div class="col-md-12  col-sm-12 well well-md">
     <center><h1> </h1></center>
     <div class="form-horizontal">
         <input type="hidden" name="id_frais" value="{{$unFrais->id_frais ?? 0}}"/>
+
+
+
         <div class="form-group">
             <label class="col-md-3 col-sm-3 control-label">Période : </label>
             <div class="col-md-2 col-sm-2">
-                <input type="text" name="anneemois" value=" " class="form-control" placeholder="AAAAMM" required autofocus>
+                <input type="text" name="anneemois" value=" {{$unFrais->id_frais ?? 0}}" class="form-control" placeholder="AAAAMM" required autofocus>
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-md-3 col-sm-3 control-label">Nb justificatifs : </label>
             <div class="col-md-2  col-sm-2">
-                <input type="number" name="nbjustificatifs" value=" "  class="form-control" placeholder="Nombre de justificatifs" required>
+                <input type="number" name="nbjustificatifs" value="{{$unFrais->id_frais ?? 0}} "  class="form-control" placeholder="Nombre de justificatifs" required>
             </div>
         </div>
         <div class="form-group">
