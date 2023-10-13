@@ -22,40 +22,39 @@ class FraisController extends Controller
             return view('Vues/listeFrais', compact('mesFrais', 'erreur'));
         } catch (MonException $e) {
             $erreur = $e->getMessage();
-            return view('Vues/monerror', compact('erreur'));
+            return view('Vues/error', compact('erreur'));
         } catch (Exception $e) {
             $erreur = $e->getMessage();
-            return view('Vues/monerror', compact('erreur'));
+            return view('Vues/error', compact('erreur'));
         }
     }
 
-
-    public function validateFrais(Request $request)
+    public function validateFrais()
     {
         try {
-            $id_frais = request:: input('id_frais');
-            $anneemois = request:: input('anneemois');
-            $nbjustificatifs = request:: input('nbjustificatifs');
+            $id_frais = Request::input('id_frais');
+            $anneemois = Request::input('anneemois');
+            $nbjustificatifs = Request::input('nbjustificatifs');
             $unServiceFrais = new ServiceFrais();
 
             if ($id_frais > 0) {
-                $this->updateFrais($id_frais, $anneemois, $nbjustificatifs);
+                $unServiceFrais->updateFrais($id_frais, $anneemois, $nbjustificatifs);
+
             } else {
-                $montant = request:: input('montant');
-                $id_visiteur = session::get('id');
+                $montant = Request::input('montant');
+                $id_visiteur = Session::get('id');
                 $unServiceFrais->insertFrais($anneemois, $nbjustificatifs, $id_visiteur, $montant);
             }
 
-            return redirect('/getListeFrais');
+            return redirect('/listeFrais');
         } catch (MonException $e) {
-            $erreur = $e->getMessage();
-            return view('Vues/monerror', compact('erreur'));
+            $monErreur = $e->getMessage();
+            return view('vues/error', compact('monErreur'));
         } catch (Exception $e) {
-            $erreur = $e->getMessage();
-            return view('Vues/monerror', compact('erreur'));
+            $monErreur = $e->getMessage();
+            return view('vues/error', compact('monErreur'));
         }
     }
-
 
 
     public function addFrais()
@@ -66,7 +65,7 @@ class FraisController extends Controller
             $titreVue = "Ajout d'une fiche de frais";
             $unFrais="";
 
-            return view('Vues/', compact('unFrais', 'titreVue', 'erreur'));
+            return view('Vues/ajoutFrais', compact('unFrais', 'titreVue', 'erreur'));
         } catch (MonException $e) {
             $erreur = $e->getMessage();
             return view('Vues/monerror', compact('erreur'));
@@ -100,19 +99,18 @@ class FraisController extends Controller
     public function ValideFraisHorsForfait()
     {
         try {
-            $id_frais = request:: input('id_frais');
-            $anneemois = request:: input('anneemois');
-            $nbjustificatifs = request::input('nbjustificatifs');
+            $id_frais = Request::input("id_frais");
+            $anneemois = Request::input("anneemois");
+            $nbjustificatifs = Request::input("nbjustificatif");
             $unServiceFrais = new ServiceFrais();
-
-            if ($id_frais > 0) {
-                $this->updateFrais($id_frais, $anneemois, $nbjustificatifs);
-            } else {
-                $montant = request::input('montant');
-                $id_visiteur = session::get('id');
-                $unServiceFrais->insertFrais($anneemois, $nbjustificatifs, $id_visiteur, $montant);
+            if($id_frais >0){
+                $unServiceFrais ->updateFrais($id_frais,$anneemois,$nbjustificatifs);
+            }else{
+                $montant = Request::input("montant");
+                $id_visiteur = Session::get("id");
+                $unServiceFrais->insertFrais($anneemois,$nbjustificatifs,$id_visiteur,$montant);
             }
-            return redirect('/getListeFrais');
+            return redirect('/listeFrais');
         } catch (MonException $e) {
             $erreur = $e->getMessage();
             return view('Vues/monerror', compact('erreur'));

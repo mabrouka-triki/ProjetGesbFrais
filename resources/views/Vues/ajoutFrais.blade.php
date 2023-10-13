@@ -1,29 +1,37 @@
-@extends('layouts.app')
+@extends('layouts/master')
 @section('content')
-    <div class="container">
 
-        <h2>Ajout d'une fiche de frais</h2>
-        <form method="POST" action="{{ route('postFrais') }}">
-            @csrf
+    <br>
+    <br>
 
+
+    {!! Form::open(['url' => 'postajoutFrais']) !!}
+    <div class="col-md-12  col-sm-12 well well-md">
+        <center><h1>Ajouter une fiche de Frais </h1></center>
+        <div class="form-horizontal">
             <div class="form-group">
-                <label for="anneemois">Année et mois</label>
-                <input type="text" name="anneemois" class="form-control" placeholder="Ex: 202310">
+                <label class="col-md-3 col-sm-3 control-label">Date : </label>
+                <div class="col-md-2 col-sm-2">
+                    <input type="text" name="anneemois" value="" class="form-control" placeholder="AAAAMM" required autofocus>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">Nb justificatif : </label>
+                <div class="col-md-2 col-sm-2">
+                    <input type="number" name="nbjustificatif" value="" class="form-control" required autofocus>
+                </div>
             </div>
 
             <div class="form-group">
-                <label for="nbjustificatifs">Nombre de justificatifs</label>
-                <input type="number" name="nbjustificatifs" class="form-control">
+                <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+                    <button type="submit" class="btn btn-default btn-primary">
+                        <span class="glyphicon glyphicon-ok"></span> Valider
+                    </button>
+                    &nbsp;
+                    <button type="button" class="btn btn-default btn-primary"
+                            onclick="javascript: window.location = '';">
+                        <span class="glyphicon glyphicon-remove"></span> Annuler</button>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="montant">Montant</label>
-                <input type="text" name="montant" class="form-control">
-            </div>
-
-            <button type="submit" class="btn btn-primary">Ajouter</button>
-        </form>
+        </div>
     </div>
-
-@endsection
-@include('Vues/error')
