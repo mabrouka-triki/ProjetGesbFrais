@@ -33,18 +33,7 @@ class ServiceFrais
         }
     }
 
-    public function getUnfrais($id)
-    {
-        try {
-            $UnFrais = DB::table('frais')
-                ->select()
-                ->where('id_frais', '=', $id)
-                ->first();
-            return $UnFrais;
-        } catch (QueryException $e) {
-            throw new MonException($e->getMessage(), 5);
-        }
-    }
+
 
     public function updateFrais($id_frais,$anneemois,$nbjustificatifs){
 
