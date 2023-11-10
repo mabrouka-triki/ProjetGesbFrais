@@ -17,7 +17,7 @@
             <tr>
                 <td> {{$unFrais->anneemois}}</td>
                 <td style="text-align: center">
-                    <a href="{{ url('/modifierFrais') }}/{{ $unFrais->id_frais }}">
+                    <a href="{{ url('/   ') }}/{{ $unFrais->id_frais }}">
                         <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="top" title="modifier"></span>
                     </a>
                 </td>
