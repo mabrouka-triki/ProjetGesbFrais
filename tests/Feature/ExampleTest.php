@@ -10,10 +10,12 @@ class ExampleTest extends TestCase
     /**
      * A basic test example.
      */
-    public function test_the_application_returns_a_successful_response(): void
+    public function test_title_contains_hello_world(): void
     {
-        $response = $this->get('/');
 
+        $response = $this->get('/list/frais/1');
         $response->assertStatus(200);
+        $response->assertSee('Hello World!');
+
     }
 }
